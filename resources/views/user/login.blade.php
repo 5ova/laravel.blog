@@ -46,7 +46,7 @@
                     </div>
                 @endif
 
-                @if(seesion()->has('error'))
+                @if(session()->has('error'))
                     <div class="alert alert-danger">
                         {{session('error')}}
                     </div>
