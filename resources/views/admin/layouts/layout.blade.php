@@ -319,6 +319,37 @@
     });
   </script>
 
+
+<script src="{{asset('assets/admin/ckeditor5-builder-47.3.0/ckeditor5/ckeditor5.js')}}"></script>
+<script src="{{asset('assets/admin/ckfinder_php_3.7.0/ckfinder/ckfinder.js')}}"></script>
+<script>
+    ClassicEditor
+      .create(document.querySelector('#content'), {
+        ckfinder: {
+          uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+        },
+        toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
+      })
+      .catch ( function( error ){
+        console.error(error);
+      });
+
+</script>
+
+<script>
+    ClassicEditor
+      .create(document.querySelector('#description'), {
+        ckfinder: {
+          uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+        },
+        toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
+      })
+      .catch ( function( error ){
+        console.error(error);
+      });
+
+</script>
+
 </body>
 
 </html>
