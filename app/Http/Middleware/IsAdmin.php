@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class IsAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->is_admin === 1) {  // или true, в зависимости от типа поля
+        if (Auth::check() && Auth::user()->is_admin) {  // или true, в зависимости от типа поля
             return $next($request);
         }
 

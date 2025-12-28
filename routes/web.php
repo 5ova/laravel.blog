@@ -21,4 +21,4 @@ Route::post('/register', 'App\Http\Controllers\UserController@store')->name('reg
 Route::get('/login', 'App\Http\Controllers\UserController@loginForm')->name('login.create');
 Route::post('/login', 'App\Http\Controllers\UserController@login')->name('login');
 });
-Route::get('/register', 'App\Http\Controllers\UserController@logout')->name('logout')->middleware('auth');
+Route::get('/logout', 'App\Http\Controllers\UserController@logout')->name('logout')->middleware('auth');
