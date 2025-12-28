@@ -11,7 +11,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+        'admin' => \App\Http\Middleware\IsAdmin::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'bindings' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'chache.headers'=> \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can'=> \Illuminate\Auth\Middleware\Authorize::class,
+        'guest'=>\App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm'=>\Illuminate\Auth\Middleware\ReqirePassword::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
