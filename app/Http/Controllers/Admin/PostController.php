@@ -104,4 +104,14 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Статья удалена');
     }
+
+    public function show($id)
+    {
+        return view('post', [
+            'post' => Post::findOrFail($id),
+            'categories' => Category::all(),
+            'tags' => Tag::all(),
+        ]);
+    }
+
 }

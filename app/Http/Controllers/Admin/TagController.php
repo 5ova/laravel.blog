@@ -5,9 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class TagController extends Controller
 {
+    public function show($id)
+    {
+        $tag = Tag::with('posts')->findOrFail($id);
+
+        return view('tag', [
+            'tag' => $tag,
+            'posts' => $tag->posts,
+            'categories' => Category::all(),
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */

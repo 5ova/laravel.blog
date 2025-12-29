@@ -6,9 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class CategoryController extends Controller
 {
+    public function show($id)
+    {
+        $category = Category::with('posts')->findOrFail($id);
+
+        return view('category', [
+            'category' => $category,
+            'posts' => $category->posts,
+            'categories' => Category::all(),
+            'tags' => Tag::all(),
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */
