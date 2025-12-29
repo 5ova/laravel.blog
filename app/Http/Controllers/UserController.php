@@ -51,7 +51,7 @@ class UserController extends Controller
             if (Auth::user()->is_admin) {
                 return redirect()->route('admin.index');
             } else {
-                return redirect() ->home();
+                return redirect()->route('home');
             }
         }
         return redirect() ->back()->wwith('error','Incorrect login or password');
