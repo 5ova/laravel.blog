@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 3 | Blank Page</title>
-  <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/47.3.0/ckeditor5.css">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,15 +14,6 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <style>
-
-      .main-container {
-				width: 795px;
-				margin-left: auto;
-				margin-right: auto;
-			} 
-    }
-  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -316,7 +306,9 @@
     <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
-
+<textarea name="content" id="content" class="form-control" rows="10">
+    {!! old('content', $post->content ?? '') !!}
+</textarea>
   <script src="{{ asset('assets/admin/js/admin.js')}}"></script>
   <script>
     $('.nav-sidebar a').each(function () {
@@ -329,39 +321,34 @@
     });
   </script>
 
-<script src="{{ asset('assets/admin/ckeditor5/ckeditor5.js') }}"></script>
-<script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script> 
 
 <script src="https://cdn.ckeditor.com/ckeditor5/47.3.0/ckeditor5.umd.js"></script>
+
 <script>
-  const {
-				ClassicEditor,
-				Essentials,
-				Paragraph,
-				Bold,
-				Italic,
-				Font
-			} = CKEDITOR;
+    const { ClassicEditor, Essentials, Paragraph, Bold, Italic, Undo } = CKEDITOR;
 
-    ClassicEditor
-				.create(document.querySelector('#content' ), {
-					licenseKey: '<YOUR_LICENSE_KEY>',
-					plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
-					toolbar: [
-						'undo', 'redo', '|', 'bold', 'italic'
-					]
-				} )
-        
-      .then( editor => {
-            console.log( 'CKEditor готов!', editor );
-        } )
-      .catch( error => {
-            console.error( 'Ошибка инициализации CKEditor:', error );
-        } );
-      
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentTextarea = document.querySelector('#content');
+        if (!contentTextarea) {
+            console.warn('Textarea с id="content" не найдена в DOM');
+            return;
+        }
 
-</script>
+        ClassicEditor
+            .create(contentTextarea, {
 
+                plugins: [ Essentials, Paragraph, Bold, Italic ],
+                toolbar: {
+                    items: [ 'undo', 'redo', '|', 'bold', 'italic' ]
+                }
+            })
+            .then(editor => {
+                console.log('CKEditor успешно запущен!', editor);
+            })
+            .catch(error => {
+                console.error('Ошибка запуска CKEditor:', error);
+            });
+    });
 </script>
 
 
