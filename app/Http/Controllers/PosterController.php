@@ -16,8 +16,11 @@ class PosterController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20);
-        return view('admin.posts.index', compact('posts'));
+       $posts = Post::with(['category', 'tags'])
+            ->latest()
+            ->simplePaginate(6);
+
+        return view('home', compact('posts'));
     }
 
     public function show($id)
