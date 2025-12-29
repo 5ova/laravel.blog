@@ -320,9 +320,8 @@
   </script>
 
 <script src="{{ asset('assets/admin/ckeditor5/ckeditor5.js') }}"></script>
- <script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script> 
-<!--  <script src="{{asset('assets/admin/ckeditor5-builder-47.3.0/ckeditor5/ckeditor5.js')}}"></script>
-<script src="{{asset('assets/admin/ckfinder_php_3.7.0/ckfinder/ckfinder.js')}}"></script>  -->
+<script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script> 
+
 <script src="https://cdn.ckeditor.com/ckeditor5/47.3.0/ckeditor5.umd.js"></script>
 <script>
   const {
@@ -335,12 +334,38 @@
 			} = CKEDITOR;
 
     ClassicEditor
-				.create( document.querySelector( '#content' ), {
+				.create(document.querySelector('#content' ), {
 					licenseKey: '<YOUR_LICENSE_KEY>',
 					plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
 					toolbar: [
-						'undo', 'redo', '|', 'bold', 'italic', '|',
-						'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+						'undo', 'redo', '|', 'bold', 'italic'
+					]
+				} )
+      .then( editor => {
+            console.log( 'CKEditor готов!', editor );
+        } )
+      .catch( error => {
+            console.error( 'Ошибка инициализации CKEditor:', error );
+        } );
+      
+
+</script>
+<script>
+  const {
+				ClassicEditor,
+				Essentials,
+				Paragraph,
+				Bold,
+				Italic,
+				Font
+			} = CKEDITOR;
+
+    ClassicEditor
+				.create( document.querySelector('#desription'), {
+					licenseKey: '<YOUR_LICENSE_KEY>',
+					plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+					toolbar: [
+						'bold', 'italic', '|', 'undo', 'redo'
 					]
 				} )
       .then( editor => {
@@ -352,19 +377,7 @@
 
 </script>
 
-<script>
-    ClassicEditor
-      .create(document.querySelector('#description'), {
-        ckfinder: {
-          uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-        },
-        toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
-      })
-      .catch ( function( error ){
-        console.error(error);
-      });
 
-</script>
 
 </body>
 
