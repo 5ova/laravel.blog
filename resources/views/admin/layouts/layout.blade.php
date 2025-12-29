@@ -319,7 +319,8 @@
     });
   </script>
 
-
+<script src="{{ asset('assets/admin/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script>
 <script src="{{asset('assets/admin/ckeditor5-builder-47.3.0/ckeditor5/ckeditor5.js')}}"></script>
 <script src="{{asset('assets/admin/ckfinder_php_3.7.0/ckfinder/ckfinder.js')}}"></script>
 <script>
