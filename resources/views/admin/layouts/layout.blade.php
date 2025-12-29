@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 3 | Blank Page</title>
+  <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/47.3.0/ckeditor5.css">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,6 +15,15 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+
+      .main-container {
+				width: 795px;
+				margin-left: auto;
+				margin-right: auto;
+			} 
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -341,6 +351,7 @@
 						'undo', 'redo', '|', 'bold', 'italic'
 					]
 				} )
+        
       .then( editor => {
             console.log( 'CKEditor готов!', editor );
         } )
@@ -350,30 +361,6 @@
       
 
 </script>
-<script>
-  const {
-				ClassicEditor,
-				Essentials,
-				Paragraph,
-				Bold,
-				Italic,
-				Font
-			} = CKEDITOR;
-
-    ClassicEditor
-				.create( document.querySelector('#desription'), {
-					licenseKey: '<YOUR_LICENSE_KEY>',
-					plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
-					toolbar: [
-						'bold', 'italic', '|', 'undo', 'redo'
-					]
-				} )
-      .then( editor => {
-            console.log( 'CKEditor готов!', editor );
-        } )
-        .catch( error => {
-            console.error( 'Ошибка инициализации CKEditor:', error );
-        } );
 
 </script>
 
